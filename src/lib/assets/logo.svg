@@ -1,0 +1,35 @@
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 중첩된 D 로고 -->
+  <g transform="translate(0, 30)">
+    <!-- 가장 바깥쪽 D -->
+    <path
+      d="M20 20 h60 q60 0 60 60 q0 60 -60 60 h-60 v-120"
+      fill="#4A90E2"
+      stroke="none"
+    />
+    <!-- 중간 D -->
+    <path
+      d="M30 35 h45 q45 0 45 45 q0 45 -45 45 h-45 v-90"
+      fill="#5DA1E8"
+      stroke="none"
+    />
+    <!-- 안쪽 D -->
+    <path
+      d="M40 50 h30 q30 0 30 30 q0 30 -30 30 h-30 v-60"
+      fill="#7AB7F1"
+      stroke="none"
+    />
+  </g>
+
+  <!-- DONT DO DAN 텍스트 -->
+  <g transform="translate(150, 130)">
+    <text
+      font-family="Arial, sans-serif"
+      font-size="64"
+      font-weight="bold"
+      fill="#4A90E2"
+    >
+      <tspan x="0" y="0">DONT DO DAN</tspan>
+    </text>
+  </g>
+</svg> 
