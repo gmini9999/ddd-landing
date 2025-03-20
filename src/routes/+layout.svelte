@@ -3,7 +3,7 @@
 	import Navigation from "$lib/components/Navigation.svelte";
 	import Footer from "$lib/components/Footer.svelte";
 	import { page } from '$app/stores';
-	import Toast from '$lib/components/Toast.svelte';
+	import Alert from '$lib/components/Alert.svelte';
 </script>
 
 <svelte:head>
@@ -19,7 +19,7 @@
 		<slot />
 	</main>
 	<Footer />
-	<Toast />
+	<Alert />
 </div>
 
 <style>

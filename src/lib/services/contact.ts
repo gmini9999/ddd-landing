@@ -1,4 +1,4 @@
-import { toast } from '$lib/stores/toast';
+import { showAlert } from '$lib/stores/alert';
 
 interface ContactForm {
   name: string;
@@ -18,20 +18,16 @@ export async function submitContact(formData: ContactForm) {
       body: JSON.stringify(formData),
     });
 
+    const result = await response.json();
+
     if (!response.ok) {
-      throw new Error('문의 접수 중 오류가 발생했습니다.');
+      throw new Error(result.error || '문의 제출 중 오류가 발생했습니다.');
     }
 
-    toast.show({
-      type: 'success',
-      message: '문의가 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.'
-    });
+    showAlert('문의가 성공적으로 제출되었습니다.', 'success');
     return true;
   } catch (error) {
-    toast.show({
-      type: 'error',
-      message: error instanceof Error ? error.message : '문의 접수 중 오류가 발생했습니다.'
-    });
+    showAlert(error instanceof Error ? error.message : '문의 제출 중 오류가 발생했습니다.', 'error');
     return false;
   }
 } 
