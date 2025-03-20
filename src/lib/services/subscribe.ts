@@ -16,6 +16,11 @@ async function subscribe(email: string) {
       throw new Error(data.error || '구독 처리 중 오류가 발생했습니다.');
     }
 
+    if (data.message) {
+      showAlert(data.message, 'info');
+      return true;
+    }
+
     return data;
   } catch (error) {
     if (error instanceof Error) {
