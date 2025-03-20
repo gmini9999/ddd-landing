@@ -3,6 +3,7 @@
 	import Navigation from "$lib/components/Navigation.svelte";
 	import Footer from "$lib/components/Footer.svelte";
 	import { page } from '$app/stores';
+	import Toast from '$lib/components/Toast.svelte';
 </script>
 
 <svelte:head>
@@ -18,6 +19,7 @@
 		<slot />
 	</main>
 	<Footer />
+	<Toast />
 </div>
 
 <style>

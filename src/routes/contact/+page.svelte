@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { setupScrollAnimation } from '$lib/utils/animations';
+  import { submitContact } from '$lib/services/contact';
   import '$lib/styles/animations.css';
 
   let formData = {
@@ -11,15 +12,29 @@
     message: ''
   };
 
+  let isSubmitting = false;
+
   onMount(() => {
     return setupScrollAnimation();
   });
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    // TODO: 실제 이메일 전송 로직 구현
-    console.log('Form submitted:', formData);
-    alert('문의가 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.');
+    if (isSubmitting) return;
+
+    isSubmitting = true;
+    const success = await submitContact(formData);
+    if (success) {
+      // 폼 초기화
+      formData = {
+        name: '',
+        email: '',
+        company: '',
+        type: '문의 유형 선택',
+        message: ''
+      };
+    }
+    isSubmitting = false;
   };
 </script>
 
@@ -144,9 +159,14 @@
             <div>
               <button 
                 type="submit" 
-                class="w-full px-8 py-3 bg-brand-primary hover:bg-brand-dark text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                class="w-full px-8 py-3 bg-brand-primary hover:bg-brand-dark text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50"
+                disabled={isSubmitting}
               >
-                문의하기
+                {#if isSubmitting}
+                  <span class="loading loading-spinner loading-sm"></span>
+                {:else}
+                  문의하기
+                {/if}
               </button>
             </div>
           </form>
